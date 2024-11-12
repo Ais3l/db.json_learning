@@ -13,16 +13,23 @@ Todo() 생성자: id, title, completed 필드를 초기화하는 생성자입니
 Todo.fromJson() 팩토리 생성자: JSON 문자열에서 Todo 객체를 만드는 메서드입니다. JSON 문자열을 파싱하여 id, title, completed 필드를 초기화합니다.
 toJson() 메서드: Todo 객체를 JSON 형식으로 변환하는 메서드입니다. 반환값은 Map<String, dynamic> 형식이며, id, title, completed 필드를 가지고 있습니다. 이 메서드는 HTTP 요청에서 Todo 객체를 전송하기 위해 사용됩니다.
  */
+
 class Todo {
   final String id; // Todo 항목의 고유 ID
   final String title; // Todo 항목의 제목
   final bool completed; // Todo 항목이 완료되었는지 여부
+  final String dueDate; // Todo 항목의 마감일
+  final String category; // Todo 항목의 카테고리
+  final int estimatedTime; // Todo 항목의 예상 소요 시간 (분 단위)
 
   // 생성자
   Todo({
     required this.id,
     required this.title,
     required this.completed,
+    required this.dueDate,
+    required this.category,
+    required this.estimatedTime,
   });
 
   // JSON에서 Todo 객체를 만드는 생성자
@@ -31,6 +38,9 @@ class Todo {
       id: json['id'] as String,
       title: json['title'] as String,
       completed: json['completed'] as bool,
+      dueDate: json['dueDate'] as String,
+      category: json['category'] as String,
+      estimatedTime: json['estimatedTime'] as int,
     );
   }
 
@@ -40,6 +50,10 @@ class Todo {
       'id': id,
       'title': title,
       'completed': completed,
+      'dueDate': dueDate,
+      'category': category,
+      'estimatedTime': estimatedTime,
     };
   }
 }
+
